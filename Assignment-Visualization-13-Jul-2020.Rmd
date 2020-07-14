@@ -1,0 +1,304 @@
+---
+title: "ASSIGNMENT VISUALIZATION"
+author: "Prahlad"
+date: "13/07/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(dplyr)
+library(ggplot2)
+```
+
+Data Visualization Assignment
+```{r}
+c_churn<-read.csv('Customer_Churn.csv')
+View(c_churn)
+```
+
+Problem Statement:
+
+Sam has successfully completed the data manipulation phase. Now, he has to represent the data pictorially to get a better understanding.
+Sam will start off by making some bar plots by using the geom_bar() function from the ggplot2 package 
+Questions on geom_bar():
+
+1.	Build a bar-plot for the ‘PhoneService’ column
+
+```{r}
+table(c_churn$PhoneService)
+barplot(table(c_churn$PhoneService), xlab= 'PhoneService', ylab='Customers with or Without Phone Service', main = 'Phone Services Data', col='blue', border='red')
+```
+Sam has successfully completed the data manipulation phase. Now, he has to represent the data pictorially to get a better understanding.
+Sam will start off by making some bar plots by using the geom_bar() function from the ggplot2 package Questions on geom_bar():
+
+1.	Build a bar-plot for the ‘PhoneService’ column
+```{r}
+ggplot(c_churn, aes(x=PhoneService))+geom_bar()
+```
+
+a.	Assign the fill color to be ‘pink’
+```{r}
+ggplot(c_churn, aes(x=PhoneService))+geom_bar(fill='pink')
+```
+b.	Assign the boundary color to be ‘peru’
+
+```{r}
+ggplot(c_churn, aes(x=PhoneService))+geom_bar(fill='pink',col='peru')
+```
+
+2.	Build a bar-plot for the ’InternetService’ column
+```{r}
+ggplot(c_churn, aes(x=InternetService))+geom_bar()
+```
+
+a.	Assign ‘InternetService’ to the fill aesthetic
+
+```{r}
+ggplot(c_churn, aes(x=InternetService, fill=InternetService))+geom_bar()
+```
+
+b.	Assign ‘Contract’ to the fill aesthetic
+```{r}
+ggplot(c_churn, aes(x=InternetService, fill=Contract))+geom_bar()
+```
+
+
+c.	Change the position of bars to ‘identity’
+
+```{r}
+ggplot(c_churn, aes(x=InternetService, fill=Contract))+geom_bar(position='identity')
+```
+
+3.	Build a bar-plot for ‘TechSupport’ column
+```{r}
+ggplot(c_churn, aes(x=TechSupport))+geom_bar()
+```
+
+a.	Assign ‘Churn’ to the fill aesthetic
+```{r}
+ggplot(c_churn, aes(x=TechSupport, fill=Churn))+geom_bar()
+```
+Now, Sam will go ahead & make some histograms by using the geom_histogram() function
+Questions on geom_histogram():
+
+1.	Build a histogram for the ‘tenure’ column
+```{r}
+ggplot(c_churn,aes(x=tenure))+geom_histogram()
+```
+a.	Assign the fill color to be ‘mediumspringgreen’
+```{r}
+ggplot(c_churn, aes(x=tenure))+geom_histogram(fill='mediumspringgreen')
+```
+
+b.	Assign the boundary color to be ‘azure’
+```{r}
+ggplot(c_churn, aes(x=tenure))+geom_histogram(fill='mediumspringgreen', col='azure')
+```
+c.	Change the number of bins to be 100
+```{r}
+ggplot(c_churn,  aes(x=tenure))+geom_histogram(fill='mediumspringgreen', col='azure',bins = 30)
+```
+2.	Build histogram for the ‘MonthlyCharges’ column
+```{r}
+ggplot(c_churn, aes(x=MonthlyCharges))+geom_histogram()
+```
+
+a.	Assign ‘PaymentMethod’ to the fill aesthetic
+```{r}
+ggplot(c_churn, aes(x=MonthlyCharges, fill=PaymentMethod))+geom_histogram()
+```
+
+b.	Assign ‘OnlineBackup’ to the fill aesthetic
+```{r}
+ggplot(c_churn, aes(x=MonthlyCharges, fill=OnlineBackup))+geom_histogram()
+```
+
+3.	Build histogram for the ‘TotalCharges’ column
+```{r}
+ggplot(c_churn, aes(x=TotalCharges))+geom_histogram()
+```
+
+a.	Assign ‘gender’ to the fill aesthetic
+```{r}
+ggplot(c_churn, aes(x=TotalCharges, fill=gender))+geom_histogram()
+```
+
+b.	Assign ‘InternetService’ to the fill aesthetic
+
+```{r}
+ggplot(c_churn, aes(x=TotalCharges, fill=InternetService))+geom_histogram()
+```
+
+Now, Sam decides to make some scatter-plots on the data by using geom_point() function
+Questions on geom_point():
+
+1.	Build a scatter-plot between ‘TotalCharges’ & ‘tenure’. Map ‘TotalCharges’ to the y-axis & ‘tenure’ to the ‘x-axis’
+```{r}
+ggplot(c_churn, aes(y=TotalCharges, x=tenure))+geom_point()
+```
+
+a.	Assign it the color ‘wheat3’
+```{r}
+ggplot(c_churn, aes(x=tenure, y=TotalCharges))+geom_point(color='wheat3')
+```
+
+b.	Use ‘col’ as an aesthetic and Map ‘PaymentMethod’ to col
+```{r}
+ggplot(c_churn,aes(x=tenure, y=TotalCharges, col=PaymentMethod))+geom_point()
+```
+
+c.	Use ‘col’ as an aesthetic and Map ‘gender’ to col
+```{r}
+ggplot(c_churn, aes(x=tenure, y= TotalCharges, col=gender))+geom_point()
+```
+
+d.	Map ‘Dependents’ to both ‘col’ & ‘shape’ aesthetics
+```{r}
+ggplot(c_churn, aes(x=tenure, y=TotalCharges, col=Dependents, shape=Dependents))+geom_point()
+```
+
+
+2.	Build a scatter-plot between ‘tenure’ & ‘MonthlyCharges’. Map ‘tenure’ to the y-axis & ‘MonthlyCharges’ to the ‘x-axis’
+
+```{r}
+ggplot(c_churn, aes(y=tenure, x= MonthlyCharges,))+geom_point()
+```
+a.	Assign it the color ‘yellowgreen’
+```{r}
+ggplot(c_churn, aes(x=MonthlyCharges, y=tenure))+geom_point(col='yellowgreen')
+```
+
+b.	Use ‘col’ as an aesthetic and Map ‘InternetService’ to col
+```{r}
+ggplot(c_churn, aes(x=MonthlyCharges, y=tenure, col=InternetService))+geom_point()
+```
+
+c.	Use ‘col’ as an aesthetic and Map ‘Contract’ to col
+```{r}
+ggplot(c_churn, aes(x=MonthlyCharges, y=tenure, col=Contract))+geom_point()
+```
+Now, Sam has to make some box-plots using the geom_boxplot() function
+Questions on geom_boxplot:
+
+1.	Build a box-plot between ‘tenure’ & ‘Partner’. Map ‘tenure’ to the y-axis & ‘Partner’ to the ‘x-axis’
+```{r}
+ggplot(c_churn, aes(x=Partner, y=tenure))+geom_boxplot()
+```
+
+a.	Assign it a fill color of ‘violet’
+```{r}
+ggplot(c_churn, aes(x=Partner, y=tenure))+geom_boxplot(fill='violet')
+```
+
+b.	Assign it a boundary color of ‘snow3’
+```{r}
+ggplot(c_churn, aes(x=Partner, y=tenure))+geom_boxplot(fill='violet',col='snow3')
+```
+
+
+2.	Build a box-plot between ‘tenure’ & ‘MultipleLines’. Map ‘tenure’ to the y-axis & ‘MultipleLines’ to the ‘x-axis’
+```{r}
+ggplot(c_churn, aes(x=MultipleLines, y=tenure))+geom_boxplot()
+```
+
+a.	Assign ‘Partner’ to the fill aesthetic
+```{r}
+ggplot(c_churn, aes(x=MultipleLines, y=tenure, fill=Partner))+geom_boxplot()
+```
+
+b.	Assign ‘PhoneService’ to the fill aesthetic
+```{r}
+ggplot(c_churn, aes(x=MultipleLines, y=tenure, fill=PhoneService))+geom_boxplot()
+```
+
+3.	Build a box-plot between ‘tenure’ & ‘Contract’
+```{r}
+ggplot(c_churn, aes(x=Contract, y=tenure))+geom_boxplot()
+```
+
+a.	Assign ‘InternetService’ to the fill aesthetic
+```{r}
+ggplot(c_churn, aes(x=Contract, y=tenure, fill=InternetService))+geom_boxplot()
+```
+
+b.	Assign ‘PaymentMethod’ to the fill aesthetic
+```{r}
+ggplot(c_churn, aes(x=Contract, y=tenure, fill=PaymentMethod))+geom_boxplot()
+```
+Now, Sam will go ahead and facet the data
+Questions on facet_grid():
+
+1.	Build a box-plot between ‘tenure’ & ‘MultipleLines’. Map ‘tenure’ on the y-axis & ‘MultipleLines’ on the x-axis. Map ‘InternetService’ to the fill aesthetic
+```{r}
+ggplot(c_churn, aes(x=MultipleLines, y=tenure, fill=InternetService))+geom_boxplot()
+```
+
+a.	Facet the plot w.r.t ‘InternetService’ column
+```{r}
+ggplot(c_churn, aes(x=MultipleLines, y=tenure, fill=InternetService))+geom_boxplot()+facet_grid(~InternetService)
+```
+
+
+2.	Build a scatter-plot between ‘TotalCharges’ & ‘tenure’. Map ‘TotalCharges’ on the y-axis & ‘tenure’ on the x-axis. Map ‘Contract’ onto col aesthetic
+```{r}
+ggplot(c_churn, aes(x=tenure, y=TotalCharges, col=Contract))+geom_point()
+```
+a.	Facet the plot w.r.t ‘Contract’ column
+```{r}
+ggplot(c_churn, aes(x=tenure, y=TotalCharges, col=Contract))+geom_point()+facet_grid(~Contract)
+```
+
+3.	Build a histogram for the ‘MonthlyCharges’ column. Map ‘PaymentMethod’ onto fill aesthetic.
+```{r}
+ggplot(c_churn, aes(x=MonthlyCharges, fill=PaymentMethod))+geom_histogram()
+```
+
+a.	Facet the plot w.r.t ‘PaymentMethod’ column
+```{r}
+ggplot(c_churn,aes(x=MonthlyCharges, fill=PaymentMethod))+geom_histogram()+facet_grid(~PaymentMethod)
+```
+Finally, Sam will add some themes to the plot with the theme() layer
+Questions on theme() layer:
+
+1.	Build a bar-plot for the ‘gender’ column. Give it a fill color of ‘blue4’
+```{r}
+ggplot(c_churn, aes(x=gender))+geom_bar(fill='blue4')
+```
+
+a.	Give the panel a background color of ‘chartreuse4’
+```{r}
+ggplot(c_churn, aes(x=gender))+geom_bar(fill='blue4')+theme(panel.background=element_rect(fill='chartreuse4'))
+```
+
+b.	Give the plot a background color of ‘cornsilk4’
+```{r}
+ggplot(c_churn, aes(x=gender))+geom_bar(fill='blue4')+theme(panel.background = element_rect(fill = "chartreuse4"))+theme(plot.background = element_rect(fill="cornsilk4"))
+```
+
+
+2.	Build a scatter-plot between ‘tenure’ & ‘MonthlyCharges’. Map ‘tenure’ on the y-axis & ‘MonthlyCharges’ on the x-axis. Assign a color of ‘yellowgreen’ to the points.
+```{r}
+ggplot(c_churn, aes(x=MonthlyCharges, y=tenure))+geom_point(col='yellowgreen')
+```
+
+a.	Add a title to the plot ‘Tenure vs Monthly Charges’
+```{r}
+ggplot(c_churn, aes(x=MonthlyCharges, y=tenure))+geom_point(col='yellowgreen')+labs(title='Tenure vs Monthly Charges')
+```
+b.	Give the panel a background color of ‘coral2’
+```{r}
+ggplot(c_churn, aes(x=MonthlyCharges, y=tenure))+geom_point(col='yellowgreen')+labs(title='Tenure vs Monthly Charges')+ theme(panel.background = element_rect(fill="coral2")) 
+```
+c.	Give the plot a background color of ‘beige’
+```{r}
+ggplot(c_churn, aes(x=MonthlyCharges, y=tenure))+geom_point(col='yellowgreen')+labs(title='Tenure vs Monthly Charges')+ theme(panel.background = element_rect(fill="coral2"))+ theme(plot.background = element_rect(fill = "beige"))
+```
+d.	Center align the title & make the color of the title to be red
+
+```{r}
+ggplot(c_churn, aes(x=MonthlyCharges, y=tenure))+geom_point(col='yellowgreen')+labs(title='Tenure vs Monthly Charges')+ theme(panel.background = element_rect(fill="coral2"))+ theme(plot.background = element_rect(fill = "beige"))+theme(plot.title = element_text(hjust = 0.5,colour = "red"))
+```
